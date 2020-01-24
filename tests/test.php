@@ -2,6 +2,6 @@
 
 require_once __DIR__ . '/../vendor/autoload.php'; // Autoload files using Composer autoload
 
-use Siteracker;
+use Monlogs;
 
-echo Siteracker::sendError();
+echo Monlogs::test();

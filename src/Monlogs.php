@@ -1,8 +1,8 @@
 <?php
 
-namespace DesignCoda\Siteracker;
+namespace DesignCoda\Monlogs;
 
-class Siteracker
+class Monlogs
 {    
     private static $api_url = 'http://siteracker.test/api/errorlog';
 
@@ -16,10 +16,10 @@ class Siteracker
             return;
         }
         
-        $api_key = env('SITERACKER_API_KEY');
+        $api_key = env('MONLOGS_API_KEY');
         
         if(!$api_key || $api_key == '') {
-            info("Error. Log wasn't sent to Siteracker. Enter API key");
+            info("Error. Log wasn't sent to Monlogs. Enter API key");
             return;
         }
         
@@ -38,7 +38,7 @@ class Siteracker
         $auth_password = "test";
 
         $ch = curl_init(self::$api_url);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_USERPWD, "{$auth_username}:{$auth_password}");
@@ -53,10 +53,10 @@ class Siteracker
         $api_response = json_decode($result);
         
         if(isset($api_response->result) && $api_response->result == 'success') {
-            info('Log was sent to Siteracker');
+            info('Log was sent to Monlogs');
             logger(print_r($api_response, true));
         } else {
-            info("Error. Log wasn't sent to Siteracker");
+            info("Error. Log wasn't sent to Monlogs");
             logger(print_r($api_response, true));
         }
     }

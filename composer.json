@@ -1,6 +1,6 @@
 {
-    "name": "designcoda/siteracker",
-    "description": "Plugin for Siteracker monitoring",
+    "name": "designcoda/monlogs",
+    "description": "Plugin for Monlogs monitoring",
     "type": "project",
     "license": "GNU GPLv3",
     "authors": [
@@ -12,5 +12,5 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.0"
-    },
+    }
 }
