@@ -37,27 +37,26 @@ DesignCoda\Monlogs\MonlogsServiceProvider::class,
 
 ### Laravel
 
-1. Откройте файл config/app.php и добавьте строчку в секции providers
+1. РћС‚РєСЂРѕР№С‚Рµ С„Р°Р№Р» config/app.php Рё РґРѕР±Р°РІСЊС‚Рµ СЃС‚СЂРѕС‡РєСѓ РІ СЃРµРєС†РёРё providers
 ```
 DesignCoda\Monlogs\MonlogsServiceProvider::class,
 ```
 
-2. В секции aliases того же файла config/app.php добавьте фасад
+2. Р’ СЃРµРєС†РёРё aliases С‚РѕРіРѕ Р¶Рµ С„Р°Р№Р»Р° config/app.php РґРѕР±Р°РІСЊС‚Рµ С„Р°СЃР°Рґ
 ```
 'Monlogs' => DesignCoda\Monlogs\MonlogsFacade::class,
 ```
 
-3. Получите API-ключ для вашего сайта
+3. РџРѕР»СѓС‡РёС‚Рµ API-РєР»СЋС‡ РґР»СЏ РІР°С€РµРіРѕ СЃР°Р№С‚Р°
 
-4. Настройте файл .env (введите свой API-ключ)
+4. РќР°СЃС‚СЂРѕР№С‚Рµ С„Р°Р№Р» .env (РІРІРµРґРёС‚Рµ СЃРІРѕР№ API-РєР»СЋС‡)
 
         MONLOGS_API_KEY=
 
-5. Добавьте следующую строчку в файл app/Exceptions/Handler.php в функцию render перед return
+5. Р”РѕР±Р°РІСЊС‚Рµ СЃР»РµРґСѓСЋС‰СѓСЋ СЃС‚СЂРѕС‡РєСѓ РІ С„Р°Р№Р» app/Exceptions/Handler.php РІ С„СѓРЅРєС†РёСЋ render РїРµСЂРµРґ return
 ```
 \Monlogs::sendError($exception);
 ```
-
 
 
 ## LICENSE
