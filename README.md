@@ -3,6 +3,20 @@
 ## Requirements
 - PHP >= 7.2
 - Laravel >= 5.8
+ 
+## Description
+This plugin send errors of your Laravel project to your another site via REST API. Send following info:
+```
+'message' - error message (syntax error, unexpected '}', expecting ';'), 
+'file' - file (absolute path), 
+'line' - line where error occured, 
+'trace' - string with trace of an error, 
+'user_id' - id of authored user (or null), 
+'url' - URL, 
+'site' - site domain, 
+'api_key' - your api key.
+```
+
 
 ## Installation
 
@@ -28,6 +42,7 @@ DesignCoda\Monlogs\MonlogsServiceProvider::class,
 4. Configure .env as needed
 
         MONLOGS_API_KEY=
+        MONLOGS_API_URL=
 
 5. Add following string to app/Exceptions/Handler.php to render section before return
 ```
@@ -52,6 +67,7 @@ DesignCoda\Monlogs\MonlogsServiceProvider::class,
 4. Настройте файл .env (введите свой API-ключ)
 
         MONLOGS_API_KEY=
+        MONLOGS_API_URL=
 
 5. Добавьте следующую строчку в файл app/Exceptions/Handler.php в функцию render перед return
 ```
