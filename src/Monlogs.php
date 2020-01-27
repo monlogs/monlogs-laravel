@@ -4,8 +4,6 @@ namespace DesignCoda\Monlogs;
 
 class Monlogs
 {    
-    private static $api_url = 'http://siteracker.test/api/errorlog';
-
     public function test() {
         echo 'test';
     }
@@ -16,10 +14,16 @@ class Monlogs
             return;
         }
         
+		$api_url = env('MONLOGS_API_URL');
         $api_key = env('MONLOGS_API_KEY');
         
         if(!$api_key || $api_key == '') {
             info("Error. Log wasn't sent to Monlogs. Enter API key");
+            return;
+        }
+		
+		if(!$api_url || $api_url == '') {
+            info("Error. Log wasn't sent to Monlogs. Enter API URL");
             return;
         }
         
@@ -37,7 +41,7 @@ class Monlogs
         $auth_username = "test";
         $auth_password = "test";
 
-        $ch = curl_init(self::$api_url);
+        $ch = curl_init($api_url);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

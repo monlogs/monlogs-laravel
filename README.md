@@ -13,7 +13,7 @@ composer require designcoda/monlogs-laravel
 
 ### Laravel
 
-1. Open config/app.php file and add provider
+1. Open config/app.php file and add provider 
 ```
 DesignCoda\Monlogs\MonlogsServiceProvider::class,
 ```
