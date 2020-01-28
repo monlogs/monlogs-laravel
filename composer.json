@@ -2,6 +2,7 @@
     "name": "designcoda/monlogs",
     "description": "Plugin for Monlogs monitoring",
     "type": "project",
+	"license": "proprietary",
     "authors": [
         {
             "name": "Alexandra Shuvalova",
