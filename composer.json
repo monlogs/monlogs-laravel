@@ -2,7 +2,6 @@
     "name": "designcoda/monlogs",
     "description": "Plugin for Monlogs monitoring",
     "type": "project",
-    "license": "GNU GPLv3",
     "authors": [
         {
             "name": "Alexandra Shuvalova",
