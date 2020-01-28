@@ -2,7 +2,6 @@
     "name": "designcoda/monlogs",
     "description": "Plugin for Monlogs monitoring",
     "type": "library",
-    "version": "1.0.0",
     "license": "proprietary",
     "authors": [
         {
