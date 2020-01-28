@@ -2,13 +2,18 @@
     "name": "designcoda/monlogs",
     "description": "Plugin for Monlogs monitoring",
     "type": "library",
-	"license": "proprietary",
+    "license": "proprietary",
     "authors": [
         {
             "name": "Alexandra Shuvalova",
             "email": "shuvalova.alexandra@gmail.com"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "DesignCoda\\Monlogs\\": "vendor/designcoda/monlogs-laravel/src"
+        }
+    },
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.0"
