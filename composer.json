@@ -11,7 +11,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "DesignCoda\\Monlogs\\": "vendor/designcoda/monlogs-laravel/src"
+            "DesignCoda\\Monlogs\\": "vendor/designcoda/monlogs/src"
         }
     },
     "minimum-stability": "dev",
