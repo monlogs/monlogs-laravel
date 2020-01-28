@@ -11,7 +11,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "DesignCoda\\Monlogs\\": "designcoda/monlogs/src"
+            "DesignCoda\\Monlogs\\": "src"
         }
     },
     "minimum-stability": "dev",
