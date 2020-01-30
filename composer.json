@@ -1,6 +1,6 @@
 {
     "name": "designcoda/monlogs",
-    "description": "Plugin for Monlogs monitoring.",
+    "description": "Plugin for Monlogs monitoring",
     "type": "library",
     "license": "proprietary",
     "authors": [
