@@ -48,6 +48,14 @@ DesignCoda\Monlogs\MonlogsServiceProvider::class,
 ```
 \Monlogs::sendError($exception);
 ```
+or if you want to catch errors from console Laravel commands add this string not to render section but in report function
+```
+public function report(Exception $exception)
+{
+    parent::report($exception);
+    \Monlogs::sendError($exception);
+}
+```
 
 
 ### Laravel
@@ -73,7 +81,14 @@ DesignCoda\Monlogs\MonlogsServiceProvider::class,
 ```
 \Monlogs::sendError($exception);
 ```
-
+или если вам нужны ошибки из консольных команд Laravel вставьте эту строчку не в render, а в report
+```
+public function report(Exception $exception)
+{
+    parent::report($exception);
+    \Monlogs::sendError($exception);
+}
+```
 
 ## LICENSE
 GNU GPLv3  
