@@ -44,17 +44,9 @@ DesignCoda\Monlogs\MonlogsServiceProvider::class,
         MONLOGS_API_KEY=
         MONLOGS_API_URL=
 
-5. Add following string to app/Exceptions/Handler.php to render section before return
+5. Run for clear caching
 ```
-\Monlogs::sendError($exception);
-```
-or if you want to catch errors from console Laravel commands add this string not to render section but in report function
-```
-public function report(Exception $exception)
-{
-    parent::report($exception);
-    \Monlogs::sendError($exception);
-}
+php artisan optimize
 ```
 
 
@@ -77,17 +69,9 @@ DesignCoda\Monlogs\MonlogsServiceProvider::class,
         MONLOGS_API_KEY=
         MONLOGS_API_URL=
 
-5. Добавьте следующую строчку в файл app/Exceptions/Handler.php в функцию render перед return
+5. Очистите кэш командой
 ```
-\Monlogs::sendError($exception);
-```
-или если вам нужны ошибки из консольных команд Laravel вставьте эту строчку не в render, а в report
-```
-public function report(Exception $exception)
-{
-    parent::report($exception);
-    \Monlogs::sendError($exception);
-}
+php artisan optimize
 ```
 
 ## LICENSE
