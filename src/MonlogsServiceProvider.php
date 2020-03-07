@@ -6,16 +6,16 @@ use Illuminate\Support\ServiceProvider;
 use DesignCoda\Monlogs\Monlogs;
 use Illuminate\Log\Events\MessageLogged;
 
-class MonlogsServiceProvider extends ServiceProvider
-{
+class MonlogsServiceProvider extends ServiceProvider {
+
     /**
      * Register services.
      *
      * @return void
      */
-    public function register()
-    {
-        $this->app->bind('monlogs', function () {
+    public function register() {
+        $this->app->bind('monlogs',
+                function () {
             return new Monlogs();
         });
     }
@@ -25,16 +25,16 @@ class MonlogsServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
-    {
+    public function boot() {
         \Log::listen(function (MessageLogged $msg) {
-		    if($msg->level == "error") {
-				try {
-					Monlogs::sendError($msg->context['exception']);
-				} catch (Exception $ex) {
-					info($ex->getTraceAsString());
-				}
-			}
-		});
+            if(isset($msg) && isset($msg->level) && $msg->level == "error") {
+                try {
+                    Monlogs::sendError($msg->context['exception']);
+                } catch (Exception $ex) {
+                    info($ex->getTraceAsString());
+                }
+            }
+        });
     }
+
 }
