@@ -46,6 +46,7 @@ DesignCoda\Monlogs\MonlogsServiceProvider::class,
 
 5. Run for clear caching
 ```
+php artisan config:clear 
 php artisan optimize
 ```
 
@@ -69,8 +70,9 @@ DesignCoda\Monlogs\MonlogsServiceProvider::class,
         MONLOGS_API_KEY=
         MONLOGS_API_URL=
 
-5. Очистите кэш командой
+5. Очистите кэш командами
 ```
+php artisan config:clear 
 php artisan optimize
 ```
 
