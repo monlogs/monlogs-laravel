@@ -26,8 +26,8 @@ class MonlogsServiceProvider extends ServiceProvider {
      * @return void
      */
     public function boot() {
-        \Log::listen(function (MessageLogged $msg) {
-            if(isset($msg) && isset($msg->level) && $msg->level == "error") {
+        \Log::listen(function ($msg) {
+            if(isset($msg) && $msg instanceOf MessageLogged && isset($msg->level) && $msg->level == "error") {
                 try {
                     Monlogs::sendError($msg->context['exception']);
                 } catch (Exception $ex) {
