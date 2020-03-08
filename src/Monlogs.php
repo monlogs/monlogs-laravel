@@ -4,25 +4,21 @@ namespace DesignCoda\Monlogs;
 
 class Monlogs
 {    
-    public function test() {
-        echo 'test';
-    }
-    
     public static function sendError(\Exception $e)
     {
         if($e instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException) {
             return;
         }
         
-		$api_url = env('MONLOGS_API_URL');
+        $api_url = env('MONLOGS_API_URL');
         $api_key = env('MONLOGS_API_KEY');
         
         if(!$api_key || $api_key == '') {
             info("Error. Log wasn't sent to Monlogs. Enter API key");
             return;
         }
-		
-		if(!$api_url || $api_url == '') {
+        
+        if(!$api_url || $api_url == '') {
             info("Error. Log wasn't sent to Monlogs. Enter API URL");
             return;
         }
@@ -51,17 +47,22 @@ class Monlogs
             'Accept : application/json',
             'Content-Length: ' . strlen($data_string))
         );
-
-        $result = curl_exec($ch);
-
-        $api_response = json_decode($result);
         
-        if(isset($api_response->result) && $api_response->result == 'success') {
-            info('Log was sent to Monlogs');
-            logger(print_r($api_response, true));
-        } else {
-            info("Error. Log wasn't sent to Monlogs");
-            logger(print_r($api_response, true));
+        try {
+            $result = curl_exec($ch);
+            $api_response = json_decode($result);
+            
+            if(isset($api_response->result) && $api_response->result == 'success') {
+                info('Log was sent to Monlogs');
+                logger(print_r($api_response, true));
+            } else {
+                info("Error. Log wasn't sent to Monlogs");
+                logger(print_r($api_response, true));
+            }
+        } catch(\Exception $e) {
+            info("Error. Log wasn't sent to Monlogs. Curl error");
         }
+        
+        curl_close($ch);
     }
 }
