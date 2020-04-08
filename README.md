@@ -46,8 +46,8 @@ DesignCoda\Monlogs\MonlogsServiceProvider::class,
 
 5. Run for clear caching
 ```
-php artisan config:clear 
-php artisan optimize
+php artisan config:clear
+php artisan route:clear
 ```
 
 
@@ -72,8 +72,8 @@ DesignCoda\Monlogs\MonlogsServiceProvider::class,
 
 5. Очистите кэш командами
 ```
-php artisan config:clear 
-php artisan optimize
+php artisan config:clear
+php artisan route:clear
 ```
 
 ## LICENSE
