@@ -20,7 +20,7 @@
     },
     "repositories": [
         {
-          "type": "git",
+          "type": "vcs",
           "url": "https://github.com/monlogs/monlogs-laravel.git"
         }
     ]
