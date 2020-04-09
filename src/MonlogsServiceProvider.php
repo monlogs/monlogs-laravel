@@ -29,7 +29,11 @@ class MonlogsServiceProvider extends ServiceProvider {
         \Log::listen(function ($msg) {
             if(isset($msg) && $msg instanceOf MessageLogged && isset($msg->level) && $msg->level == "error") {
                 try {
-                    Monlogs::sendError($msg->context['exception']);
+                    if(isset($msg->context['exception'])) {
+                        Monlogs::sendError($msg->context['exception']);
+                    } else {
+                        logger('Monlogs: No exception in message');
+                    }
                 } catch (Exception $ex) {
                     info($ex->getTraceAsString());
                 }
