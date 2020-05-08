@@ -29,6 +29,14 @@ class Monlogs
             'site' => request()->getHttpHost(),
             'api_key' => $api_key);
         
+        if($e instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException) {
+            if($data['message'] == '') {
+                $data['message'] = $data['url'].' not found';
+            }
+            
+            $data['referrer'] = $data['url'];
+        }
+        
         $data_string = json_encode($data);
         $auth_username = "test";
         $auth_password = "test";
