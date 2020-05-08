@@ -6,10 +6,6 @@ class Monlogs
 {    
     public static function sendError(\Exception $e)
     {
-        if($e instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException) {
-            return;
-        }
-        
         $api_url = env('MONLOGS_API_URL');
         $api_key = env('MONLOGS_API_KEY');
         
@@ -58,6 +54,9 @@ class Monlogs
             } else {
                 info("Error. Log wasn't sent to Monlogs");
                 logger(print_r($api_response, true));
+                if(curl_errno($ch)){
+                    logger('Curl error: ' . curl_error($ch));
+                }
             }
         } catch(\Exception $e) {
             info("Error. Log wasn't sent to Monlogs. Curl error");

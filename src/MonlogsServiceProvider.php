@@ -31,6 +31,7 @@ class MonlogsServiceProvider extends ServiceProvider {
                 try {
                     if(isset($msg->context['exception'])) {
                         Monlogs::sendError($msg->context['exception']);
+                        sleep(10);
                     } else {
                         logger('Monlogs: No exception in message');
                     }
