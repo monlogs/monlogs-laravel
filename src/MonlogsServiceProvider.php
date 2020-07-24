@@ -2,9 +2,10 @@
 
 namespace DesignCoda\Monlogs;
 
-use Illuminate\Support\ServiceProvider;
 use DesignCoda\Monlogs\Monlogs;
 use Illuminate\Log\Events\MessageLogged;
+use Illuminate\Support\ServiceProvider;
+use Log;
 
 class MonlogsServiceProvider extends ServiceProvider {
 
@@ -14,9 +15,8 @@ class MonlogsServiceProvider extends ServiceProvider {
      * @return void
      */
     public function register() {
-        $this->app->bind('monlogs',
-                function () {
-            return new Monlogs();
+        $this->app->bind('monlogs', function () {
+            return new Monlogs;
         });
     }
 
@@ -26,7 +26,7 @@ class MonlogsServiceProvider extends ServiceProvider {
      * @return void
      */
     public function boot() {
-        \Log::listen(function ($msg) {
+        Log::listen(function ($msg) {
             if(isset($msg) && $msg instanceOf MessageLogged && isset($msg->level) && $msg->level == "error") {
                 try {
                     if(isset($msg->context['exception'])) {

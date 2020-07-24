@@ -2,36 +2,39 @@
 
 namespace DesignCoda\Monlogs;
 
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
 class Monlogs
 {    
-    public static function sendError(\Exception $e)
+    public static function sendError($e)
     {
         $api_url = env('MONLOGS_API_URL');
         $api_key = env('MONLOGS_API_KEY');
         
-        if(!$api_key || $api_key == '') {
+        if(! $api_key || $api_key == '') {
             info("Error. Log wasn't sent to Monlogs. Enter API key");
             return;
         }
         
-        if(!$api_url || $api_url == '') {
+        if(! $api_url || $api_url == '') {
             info("Error. Log wasn't sent to Monlogs. Enter API URL");
             return;
         }
         
-        $data = array(
+        $data = [
             'message' => $e->getMessage(),
             'file' => $e->getFile(),
             'line' => $e->getLine(),
             'trace' => $e->getTraceAsString(),
-            'user_id' => \Auth::id(),
+            'user_id' => auth()->id(),
             'url' => request()->url(),
             'site' => request()->getHttpHost(),
-            'api_key' => $api_key);
+            'api_key' => $api_key,
+        ];
         
-        if($e instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException) {
+        if($e instanceof NotFoundHttpException) {
             if($data['message'] == '') {
-                $data['message'] = $data['url'].' not found';
+                $data['message'] = $data['url'] . ' not found';
             }
             
             $data['referrer'] = $data['url'];
@@ -49,7 +52,7 @@ class Monlogs
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
             'Content-Type: application/json',
             'Accept : application/json',
-            'Content-Length: ' . strlen($data_string))
+            'Content-Length: ' . strlen($data_string)),
         );
         
         try {
